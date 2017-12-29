@@ -1,13 +1,11 @@
 package org.pinakee.transform;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import net.sf.saxon.s9api.DocumentBuilder;
@@ -22,7 +20,7 @@ import net.sf.saxon.s9api.XdmValue;
 @Component("xqueryTransformer")
 public class XqueryTransformer {
 
-	public String transform(String xml) throws SaxonApiException, IOException {
+	public String transform(String xml,String xquery) throws SaxonApiException, IOException {
 		
 		
 		
@@ -31,9 +29,7 @@ public class XqueryTransformer {
 
 		// compile the query
 		XQueryCompiler compiler = saxon.newXQueryCompiler();
-		XQueryExecutable exec = compiler.compile("<customers Hello=\"hello\">\r\n" + 
-				"	 { //customers/customer[1]/name/text() }\r\n" + 
-				"	</customers>");
+		XQueryExecutable exec = compiler.compile(xquery);
 
 		// parse the string as a document node
 		DocumentBuilder builder = saxon.newDocumentBuilder();
