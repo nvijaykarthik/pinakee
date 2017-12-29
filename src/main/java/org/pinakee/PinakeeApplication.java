@@ -14,10 +14,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
 @SpringBootApplication
-public class DemoApplication {
+public class PinakeeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(PinakeeApplication.class, args);
 	}
 }
 
