@@ -36,13 +36,17 @@ public class TransformerService {
 		
 		log.trace("Data fetched for xquery {} is {}",xqueryName,entity.getXqueryContent());
 		String xquery =entity.getXqueryContent();
+		long startTime = System.currentTimeMillis();
 		String result=xqueryTransformer.transform(xml,xquery);
-		
+		long endTime = System.currentTimeMillis();
 		log.debug("Transformed data is : {}",result);
+		String exeTime=(endTime-startTime)+"ms";
+		log.debug("Execution time : {} seconds",exeTime);
 		
 		Transformed transformedData= new Transformed();
 			transformedData.setStatus(0);
 			transformedData.setContent(result);
+			transformedData.setExecutionTime(exeTime);
 		
 		return transformedData;
 	}

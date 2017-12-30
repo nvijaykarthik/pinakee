@@ -1,14 +1,19 @@
 package org.pinakee.domain;
 
 public class Transformed {
-	@Override
-	public String toString() {
-		return "Transformed [status=" + status + ", content=**large Size to print**]";
-	}
+	
 	private Integer status;
 
 	private String content;
 	
+	private String executionTime;
+	
+	public String getExecutionTime() {
+		return executionTime;
+	}
+	public void setExecutionTime(String executionTime) {
+		this.executionTime = executionTime;
+	}
 	public Integer getStatus() {
 		return status;
 	}
@@ -20,5 +25,10 @@ public class Transformed {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	@Override
+	public String toString() {
+		return "Transformed [status=" + status + ", content=**Larger to print**, executionTime=" + executionTime + "]";
 	}
 }
