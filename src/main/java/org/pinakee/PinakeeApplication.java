@@ -5,6 +5,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -22,12 +24,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class PinakeeApplication extends SpringServletContainerInitializer{
 
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	public static void main(String[] args) {
 		SpringApplication.run(PinakeeApplication.class, args);
 	}
 	
 	@Bean
     public Docket productApi() {
+		log.debug("Creating swagger docket");
         return new Docket(DocumentationType.SWAGGER_2)
                 .select().apis(RequestHandlerSelectors.basePackage("org.pinakee.resource"))
                 .build()
@@ -36,6 +41,7 @@ public class PinakeeApplication extends SpringServletContainerInitializer{
     }
 	private ApiInfo metaData() {
 		Collection<VendorExtension> coll=new ArrayList<VendorExtension>();
+		log.debug("Swagger API info");
         ApiInfo apiInfo = new ApiInfo(
                 "Rest API For Pinakee",
                 "REST API For XML transformation using xquery", 

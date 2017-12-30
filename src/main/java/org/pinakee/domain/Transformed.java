@@ -1,6 +1,10 @@
 package org.pinakee.domain;
 
 public class Transformed {
+	@Override
+	public String toString() {
+		return "Transformed [status=" + status + ", content=**large Size to print**]";
+	}
 	private Integer status;
 
 	private String content;

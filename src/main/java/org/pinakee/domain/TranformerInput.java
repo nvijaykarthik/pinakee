@@ -2,6 +2,10 @@ package org.pinakee.domain;
 
 public class TranformerInput {
 
+	@Override
+	public String toString() {
+		return "TranformerInput [xqueryName=" + xqueryName + ", xml=**large Size to print**]";
+	}
 	public String getXqueryName() {
 		return xqueryName;
 	}

@@ -6,6 +6,12 @@ import org.springframework.data.annotation.Id;
 
 public class TransformerEntity {
 
+	@Override
+	public String toString() {
+		return "TransformerEntity [id=" + id + ", xqueryName=" + xqueryName + ", xqueryContent=**large Size to print**"
+				+ ", active=" + active + ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate
+				+ ", createdBy=" + createdBy + ", modifiedBy=" + modifiedBy + "]";
+	}
 	@Id
 	private String id;
 	
