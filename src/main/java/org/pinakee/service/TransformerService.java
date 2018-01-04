@@ -63,10 +63,13 @@ public class TransformerService {
 		return transformesList;
 	}
 
-	public String deleteTransformer(String id) {
+	public Transformed deleteTransformer(String id) {
 		log.debug("Deleting the transformer : {}",id);
 		repository.delete(id);
 		log.debug("Deleted Successfully :{}",id);
-		return "Successfully deleted";
+		Transformed success = new Transformed();
+		success.setStatus(0);
+		success.setContent("Successfully deleted");
+		return success;
 	}
 }

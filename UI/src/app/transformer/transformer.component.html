@@ -1,0 +1,33 @@
+<div class="col-sm-3 col-md-2 sidebar">
+  <div class="title">
+    <img [src]="title_logo" width="200px" />
+  </div>
+  <div class="menu">
+    <input [(ngModel)]="searchText" class="form-control" placeholder="search text goes here" aria-describedby="basic-addon2">
+      <ul class="nav nav-sidebar">
+      
+      <li class="addNew">
+        <a class="addNewXquery pointerCursor" (click)="addnew()">Add New</a>
+      </li>
+      <li *ngFor="let transformer of transformers | filter : searchText" [class.active]="transformer === selectedTransformer">
+        <a (click)="onSelect(transformer)" class="pointerCursor">{{transformer.xqueryName}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+  <div *ngIf=selectedTransformer>
+    <h3><b>Id:</b>{{selectedTransformer.id}} &nbsp; &nbsp; <b>CreatedOn:</b>{{selectedTransformer.createdDate}}</h3>
+    <div class="form-group">
+      <label for="xqueryName"><h4>Xquery Name</h4></label>
+      <input type="text" class="form-control" id="xqueryName" placeholder="xqueryName" [(ngModel)]="selectedTransformer.xqueryName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="xqueryContent"><h4>Xquery Content</h4></label>
+      <textarea class="form-control" rows="20" [(ngModel)]="selectedTransformer.xqueryContent"></textarea>
+    </div>
+    <button type="button" class="btn btn-primary" (click)=save()><i class="fa fa-check">&nbsp;</i>Save</button>
+    <button type="submit" class="btn btn-danger" (click)=delete(selectedTransformer.id)><i class="fa fa-times">&nbsp;</i>Detete</button>
+  </div>
+</div>

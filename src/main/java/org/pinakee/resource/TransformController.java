@@ -52,7 +52,7 @@ public class TransformController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-	public String transformer(@RequestParam String id) {
+	public Transformed transformer(@RequestParam String id) {
 		log.debug("Input :{}",id);
 		return service.deleteTransformer(id);
 	}
