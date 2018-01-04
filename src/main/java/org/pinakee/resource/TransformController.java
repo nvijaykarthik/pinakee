@@ -24,7 +24,6 @@ import net.sf.saxon.s9api.SaxonApiException;
 
 @RestController
 @RequestMapping(path="/rest/transform")
-@CrossOrigin
 public class TransformController {
 
 	@Autowired

@@ -303,8 +303,8 @@ var httpOptions = {
 var TransformerService = (function () {
     function TransformerService(http) {
         this.http = http;
-        this.url = 'http://localhost:8080/rest/transform';
-        this.saveURl = 'http://localhost:8080/rest/transform/newTransformer';
+        this.url = '/rest/transform';
+        this.saveURl = '/rest/transform/newTransformer';
     }
     TransformerService.prototype.getTransformers = function () {
         return this.http.get(this.url);
