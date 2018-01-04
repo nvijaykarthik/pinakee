@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.SpringServletContainerInitializer;
 
+import com.esotericsoftware.kryonet.Server;
+
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -52,4 +54,9 @@ public class PinakeeApplication extends SpringServletContainerInitializer{
                 "https://opensource.org/licenses/MIT",coll);
         return apiInfo;
     }
+	
+	@Bean
+	public Server server() {
+		return new Server();
+	}
  }
