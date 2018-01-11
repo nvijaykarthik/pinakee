@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class TransformerEntity {
 
 	@Override
@@ -18,7 +20,10 @@ public class TransformerEntity {
 	private String xqueryName;
 	private String xqueryContent;
 	private boolean active;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss") 
 	private Date createdDate;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss") 
 	private Date modifiedDate;
 	private String createdBy;
 	private String modifiedBy;
