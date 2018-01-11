@@ -1,6 +1,7 @@
 package org.pinakee.service;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.pinakee.domain.Transformed;
@@ -54,6 +55,8 @@ public class TransformerService {
 	public TransformerEntity addTransformerData(TransformerEntity transformerEntity) {
 		log.debug("Saving the data {}",transformerEntity);
 		log.trace("Saving the data xquery content {}",transformerEntity.getXqueryContent());
+		transformerEntity.setCreatedDate(new Date());
+		transformerEntity.setModifiedDate(new Date());
 		return repository.save(transformerEntity);
 	}
 
