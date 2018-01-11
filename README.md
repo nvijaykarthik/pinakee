@@ -35,7 +35,7 @@ Pinakee has an UI where you can save the transformer xquery.
 * Java 8 
 * Mongo DB – latest version.
 
-Download the ZIP file, unzip to get the JAR and application.properties , edit the application.properties and modify the DB connection details.
+Download the ZIP file [pinakee.zip](https://github.com/nvijaykarthik/pinakee/releases/download/1.0.0-beta/pinakee.zip) , unzip to get the JAR and application.properties , edit the application.properties and modify the DB connection details.
 
 Start the application with the below command (after changing the mongo DB connection details)
 
