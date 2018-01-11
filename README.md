@@ -34,13 +34,20 @@ Pinakee has an UI where you can save the transformer xquery.
 * Java 8 
 * Mongo DB – latest version.
 
-Download the ZIP file, unzip to get the JAR and application.properties , edit the application.properties and modify the DB connection details 
+Download the ZIP file, unzip to get the JAR and application.properties , edit the application.properties and modify the DB connection details.
+
 Start the application with the below command (after changing the mongo DB connection details)
+
+```
 java –jar -Dserver.port=8080  pinakee.jar   ( you can change the port if needed )
+```
+You can access the application in http://<domain:port>/
 
 ## For Users 
 
-You can add, modify and edit the XQueries through UI. below is the simple screen capture for the CRUD
+You can add, modify and edit the XQueries through UI.
+
+Below is the simple screen capture for the CRUD
 
 **New Xquery addition**
 
@@ -58,10 +65,15 @@ You can add, modify and edit the XQueries through UI. below is the simple screen
 
 ![alt text](doc/List_Search_Xquery_UI.png "List of Available xqueries")
 
+# API
+
+API URL : http://localhost:8080/rest/transform
+
 ### Converting a sample XML
  
-1. First add the xquery though UI, give a name Ref above add new screen 
-2. Then using the rest API you can convert the xml from one format to another.
+1. First add the xquery through UI
+2. Give a name (Ref above add new screen)
+3. Then using the rest API you can convert the xml from one format to another.
 
 **Swagger UI** 
 
@@ -112,7 +124,8 @@ METHOD: POST
 pinakee.exception-mapping.<fully qualified exception class>=<HTML error code>
 pinakee.message-mapping. <fully qualified exception class>=<Customer error Message>
 ```
-Features to Add
+## Features to Add
+
 Kryo Serialization in TCP connection to make the remote calls faster. 
 
 
