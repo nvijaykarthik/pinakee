@@ -115,6 +115,7 @@ METHOD: POST
 * Spring Data Mongo 
 * Maven
 * Java 8 
+* Angular 4 (used for UI development)
 
 1. Pinakee is developed using Spring boot , where the the transformer logic is build using saxon processor.
 2. Core transformation logic is available in org/pinakee/transform/
