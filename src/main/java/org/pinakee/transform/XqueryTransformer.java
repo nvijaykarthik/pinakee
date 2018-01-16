@@ -2,6 +2,7 @@ package org.pinakee.transform;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.xml.transform.Source;
@@ -10,15 +11,25 @@ import javax.xml.transform.stream.StreamSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
+import net.sf.saxon.Configuration;
+import net.sf.saxon.om.Item;
+import net.sf.saxon.om.Sequence;
+import net.sf.saxon.om.SequenceIterator;
+import net.sf.saxon.om.StructuredQName;
+import net.sf.saxon.query.DynamicQueryContext;
 import net.sf.saxon.s9api.DocumentBuilder;
 import net.sf.saxon.s9api.Processor;
+import net.sf.saxon.s9api.QName;
 import net.sf.saxon.s9api.SaxonApiException;
 import net.sf.saxon.s9api.XQueryCompiler;
 import net.sf.saxon.s9api.XQueryEvaluator;
 import net.sf.saxon.s9api.XQueryExecutable;
+import net.sf.saxon.s9api.XdmAtomicValue;
 import net.sf.saxon.s9api.XdmNode;
 import net.sf.saxon.s9api.XdmValue;
+import net.sf.saxon.trans.XPathException;
 
 @Component("xqueryTransformer")
 public class XqueryTransformer {
@@ -28,16 +39,17 @@ public class XqueryTransformer {
 	XQueryCompiler compiler;
 	XQueryExecutable exec;
 	DocumentBuilder builder;
-	
+	Configuration config;
 	@PostConstruct
 	private void init() {
 		saxon = new Processor(false);
 		compiler = saxon.newXQueryCompiler();
 		builder = saxon.newDocumentBuilder();
+		config=new Configuration();
 		log.debug("The Saxon processor object created");
 	}
 	
-	public String transform(String xml,String xquery) throws SaxonApiException, IOException {
+	public String transform(String xml,String xquery,Map<String,String> parameters) throws SaxonApiException, IOException {
 		XQueryExecutable exec = compiler.compile(xquery);
 		log.debug("Xquery Compiled");
 		Source src = new StreamSource(new StringReader(xml));
@@ -46,6 +58,12 @@ public class XqueryTransformer {
 		// instantiate the query, bind the input and evaluate
 		XQueryEvaluator query = exec.load();
 		query.setContextItem(doc);
+		if(!CollectionUtils.isEmpty(parameters)) {
+			parameters.forEach((k,v)->{
+				query.setExternalVariable(new QName(k), new XdmAtomicValue(v));
+			});
+			
+		}
 		XdmValue result = query.evaluate();
 		log.debug("Xquery is evaluated and result is generated ");
 		return result.toString();

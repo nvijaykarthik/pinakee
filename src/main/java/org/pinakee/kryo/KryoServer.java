@@ -68,7 +68,7 @@ public class KryoServer {
 		            	  log.debug("Input Message : {} ",request); 
 		            	  Transformed response;
 						try {
-							response = transformerService.retrieveXqueryFromDB(request.getXqueryName(),request.getXml());
+							response = transformerService.retrieveXqueryFromDB(request.getXqueryName(),request.getXml(),null);
 						} catch (Exception e) {
 							response=new Transformed();
 							response.setStatus(-1);

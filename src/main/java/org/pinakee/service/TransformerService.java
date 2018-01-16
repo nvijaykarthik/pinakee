@@ -3,6 +3,7 @@ package org.pinakee.service;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.pinakee.domain.Transformed;
 import org.pinakee.exception.XqueryNotFoundException;
@@ -27,7 +28,7 @@ public class TransformerService {
 	@Autowired
 	XqueryTransformer xqueryTransformer;
 	
-	public Transformed retrieveXqueryFromDB(String xqueryName,String xml) throws SaxonApiException, IOException, XqueryNotFoundException {
+	public Transformed retrieveXqueryFromDB(String xqueryName,String xml,Map<String,String> parameters) throws SaxonApiException, IOException, XqueryNotFoundException {
 		log.trace("Input {},{}",xqueryName,xml);
 		log.debug("fetching xquery for the {}",xqueryName);
 		TransformerEntity entity=repository.findByXqueryName(xqueryName);
@@ -38,7 +39,7 @@ public class TransformerService {
 		log.trace("Data fetched for xquery {} is {}",xqueryName,entity.getXqueryContent());
 		String xquery =entity.getXqueryContent();
 		long startTime = System.currentTimeMillis();
-		String result=xqueryTransformer.transform(xml,xquery);
+		String result=xqueryTransformer.transform(xml,xquery,parameters);
 		long endTime = System.currentTimeMillis();
 		log.debug("Transformed data is : {}",result);
 		String exeTime=(endTime-startTime)+"ms";

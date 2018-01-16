@@ -35,7 +35,7 @@ public class TransformController {
 	public Transformed transform(@RequestBody TranformerInput transformer) throws SaxonApiException, IOException, XqueryNotFoundException {
 		log.debug("Input :{}",transformer);
 		log.trace("input xml \n {}",transformer.getXml());
-		return service.retrieveXqueryFromDB(transformer.getXqueryName(), transformer.getXml());
+		return service.retrieveXqueryFromDB(transformer.getXqueryName(), transformer.getXml(),transformer.getParameters());
 	}
 	
 	@RequestMapping(path="/newTransformer",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
