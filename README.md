@@ -9,6 +9,7 @@ METHOD: POST
 
 ```
 {
+	parameters (keyValue Map),
 	xml (string),
 	xqueryName (string)
 
@@ -18,8 +19,19 @@ METHOD: POST
 Sample json
 ```
 {
-  "xqueryName": "customer ",
+
+  "parameters": {
+  
+    "test":"first parameter",
+    
+    "test1":"Second Parameter"\
+    
+   },
+   
+  "xqueryName": "customer",
+  
   "xml": "<customers><customer id='1'><name>Foo Industries</name><industry>Chemical</industry><city>Glowing City</city></customer><customer id='2'><name>Bar Refreshments</name><industry>Beverage</industry><city>Desert Town</city></customer><customer id='3'><name>Hello World Services</name><industry>Travel</industry><city>Coral Sands</city></customer></customers>"
+  
 }
 ```
 
@@ -88,22 +100,39 @@ METHOD: POST
  
 **__Sample xquery__**
 ```
-<customers Hello='hello'>{ //customers/customer[1]/name/text() }</customers>
+declare variable $test as xs:string external;
+
+<customers Hello='{$test}'>{ //customers/customer[1]/name/text() }</customers>
 ```
 
 **__Sample Request__**
 ```
 {
+
+  "parameters": {
+  
+    "test":"first parameter",
+    
+    "test1":"Second Parameter"
+    
+   },
+   
   "xqueryName": "customer",
+  
   "xml": "<customers><customer id='1'><name>Foo Industries</name><industry>Chemical</industry><city>Glowing City</city></customer><customer id='2'><name>Bar Refreshments</name><industry>Beverage</industry><city>Desert Town</city></customer><customer id='3'><name>Hello World Services</name><industry>Travel</industry><city>Coral Sands</city></customer></customers>"
+  
 }
 ```
 **__Sample Response__**
 ```
 {
+
   "status": 0,
-  "content": "<customers Hello=\"hello\">Foo Industries</customers>",
-  "executionTime": "860ms"
+  
+  "content": "<customers Hello=\"first parameter\">Foo Industries</customers>",
+  
+  "executionTime": "2467ms"
+  
 }
 ```
 ## For Developers
